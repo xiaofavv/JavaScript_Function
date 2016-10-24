@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>匿名函数回调</title>
+</head>
+<body>
+<script>
+	//要求以制定格式输出结果，将一个数组中的元素*2，指定格式输出
+	//-----------------正常情况下------------------------：
+	function show(arr){    //以换行<br />格式输出
+		for(var i=0;i<arr.length;i++){
+			document.write(arr[i]+"<br />");
+		}
+	}
+
+	function show2(arr){    //以<ul><li>...</li></ul>格式输出
+		document.write("<ul>");
+		for(var i=0;i<arr.length;i++){
+			document.write("<li>"+arr[i]+"</li>");
+		}
+		document.write("</ul>");
+	}
+
+	//以上是用show()函数对整体制定一种格式输出,多种多样，熟记一些标签格式
+	
+	//以下是用jisuan()函数进行对数值进行计算，也就是要求的*2格式
+	
+	function jisuan(){
+		var arr=new Array();//将数值从arguments中取出放入一个数组中
+		for(var i=0;i<arguments.length-1;i++){ //arguments.length-1:最后的函数不进入数值运算
+			arr[i]=arguments[i]*2;
+		}
+			if( (typeof arguments[arguments.length-1])=='function'){//判断最后一个是否为函数
+				//show(arr);
+				arguments[arguments.length-1](arr);//当条件满足时，最后一个为show函数，则arguments[arguments.length-1](arr)是相当于show(arr)，此处为激活函数，进行运算
+			}
+	}
+	//jisuan(1,2,3,4, show);函数也是一种数据，这里传进去的是show函数的代码，要运行的话必须调用show
+
+
+	//------------------------使用匿名函数情况下----------------------：
+	
+	//jisuan(1,2,3,4, show);
+	jisuan(1,2,3,4, function (arr){   //将show的代码复制在原处，然后去掉名字
+		for(var i=0;i<arr.length;i++){
+			document.write(arr[i]+"<br />"); //以换行<br />格式输出
+		}
+	});
+
+	jisuan(70,80, function (arr){    
+		for(var i=0;i<arr.length;i++){
+			document.write(arr[i]+"<hr />");//以换行<hr />格式输出
+		}
+	});
+
+
+	jisuan(1,2,3,4, function (arr){    
+		document.write("<ul>");
+		for(var i=0;i<arr.length;i++){
+			document.write("<li>"+arr[i]+"</li>");//以<ul><li>...</li></ul>格式输出
+		}
+		document.write("</ul>");
+	});
+
+	//1.匿名函数写起来会冗长，但是运算性能高，作为一个参数解析高
+	//2.节省了变量
+	//3.他的调用交给了另一个函数
+	
+</script>	
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+<script>
+	function f1(){
+		var a=1;
+		return function(){   //闭包:突破变量生命周期，保存a的引用
+			return a;
+		}
+	}
+	// var r=f1();
+	// document.write(  r());
+
+	// function greet(name){
+	// 	return function (greeting){
+	// 		return greeting+" "+name;
+	// 	}
+	// }
+	// var r=greet("HLY");
+	// document.write(r("hello"));
+
+
+	function greet(name){
+		return function (greeting){
+			return greeting+" "+name; //保存了值也会被下面替换掉
+		}
+	}
+	var n=greet("HLY");
+	var r=greet(n);
+	document.write(r("hello"));	//name即使被改了两次，但调用只会取最后一次
+</script>	
+</body>
+</html>

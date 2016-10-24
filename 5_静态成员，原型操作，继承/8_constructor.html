@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>8_constructor</title>
+</head>
+<body>
+<script type="text/javascript">
+	function Person(name,age){
+		//this指得是当前的对象的name   name指的是形参的name
+		//最开始  this.name 是空值 接着通过这句代码将name的实参值传到 this.name 中保存
+		this.name=name;
+		this.age=age;
+	}
+
+	var p=new Person("张三",20);
+	document.write(p.constructor+"<br /><hr />");
+
+//利用constructor返回源码，来创建另一个对象
+	var p2=new p.constructor("tom",20);
+	document.write(p2.name+"   "+p2.age+"<br /><hr />");
+	document.write(p2.constructor+"<br /><hr />");
+
+//利用constructor来查看一个对象是否为某个特定的类型
+	document.write((Person==p2.constructor)+"<br /><hr />");
+</script>	
+</body>
+</html>

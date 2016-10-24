@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>6_静态成员</title>
+</head>
+<body>
+<script type="text/javascript">
+
+	Object.sayHi=function(){
+		alert('hello');
+	}
+	Object.sayHi();//使用静态函数可以直接调用
+
+	Object.prototype.sayBye=function(){//扩展 ，方便加各种功能与方法
+		alert('bye');
+	}
+	var obj=new Object(); //而当使用prototype时还需要借助一个新变量来调用
+	obj.sayBye();
+	
+	// Object.sayHello=function(){
+	// 	alert('hello');
+	// }
+	// Object.sayHello();
+
+	// Object.prototype.sleep=function(){ x
+	// 	alert("要养成早睡早起的好习惯");
+	// }
+	// var val=new Object;
+	// val.sleep();
+</script>	
+</body>
+</html>

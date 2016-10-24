@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>内部私有函数</title>
+</head>
+<body>
+<script type="text/javascript">
+	function show(){
+		//show的子函数 son，son函数是专门为show来使用的，子函数的作用是为了包装一些重要的算法，只能通过父函数来调用
+		function son(){
+			document.write("hello"+"<br />");
+		}
+		son();
+	}
+
+	show();  //通过父函数来调用子函数
+
+//要求：写一个函数，传入两个数还有一个运算符，计算两个数相应的数
+function jisuan(a,b,op){
+	function add(a,b){
+		return a+b;
+	}
+	function sub(a,b){
+		return a-b;
+	}
+	function mul(a,b){
+		return a*b;
+	}
+	function chu(a,b){
+		return a/b;
+	}
+	if(op=='+'){
+		return add(a,b);
+	}else if(op=='-'){
+		return sub(a,b);
+	}else if(op=='*'){
+		return mul(a,b);
+	}else if(op=='/'){
+		return chu(a,b);
+	}
+}
+document.write("计算结果为："+jisuan(1,2,'+'));
+
+
+//小结：1.在父函数外不可以调用子函数，只能通过父函数来调用
+//		2.子函数的作用是为了包装一些重要的算法，提高封装安全性
+//		3.计算结果是数值运算，所以不能给数值加'',否则变成字符串
+
+</script>	
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>闭包的应用_封装2</title>
+</head>
+<body>
+	<script>
+		//要求：将数组的操作封装成一个组件来用
+		var ycarray=(function(){
+			//数据->属性
+			var array=[];
+			//操作方法->函数->闭包->操作数据
+			return{
+				add:function(item){
+					array[array.length]=item;
+				},
+				size:function(){
+					return array.length;
+				},
+				clean:function(){
+					array=[];
+				},
+				get:function(){
+					return array;
+				}
+			};
+		}	
+	)();
+	ycarray.add('a');
+	ycarray.add('b');
+	document.write(ycarray.size()+"<br />");
+	ycarray.clean();
+	document.write(ycarray.size()+"<br />");
+
+	ycarray.add('a');
+	ycarray.add('b');
+	var result=ycarray.get();
+	for(var i=0;i<result.length;i++){
+		document.write(result[i]+"<br />");
+	}
+	</script>
+
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>闭包的应用_封装5</title>
+</head>
+<body>
+<script>
+	function selfNext(arr){ //默写
+		var index=0; 
+		return function(){
+			return arr[index++];
+		}
+	}
+	var mynext=selfNext([1,2,3,4]);
+	while(a=mynext()){
+		document.write(a+"<br />");//mynext=>指的是一个函数
+	}
+	  
+	
+</script>
+</body>
+</html>

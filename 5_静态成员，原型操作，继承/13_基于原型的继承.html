@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>13_基于原型的继承</title>
+</head>
+<body>
+<script>
+	//定义父类
+	function Animal(){}
+	Animal.prototype={
+		group:"动物",
+		gender:'',
+		eat:function(){
+			return "进食";
+		},
+		sleep:function(){
+			return "睡觉";
+		},
+		toString:function(){
+			return this.group+" "+this.gender;
+		}
+	}
+	//定义子类
+	function Bird(){}
+	//实现继承
+	Bird.prototype=new Animal();//最关键：当使用new 父类来重写子类的prototype 时，子类的constructor不会被重写   Object的构造器  使用prototype来继承
+	Bird.prototype.fly=function(){
+		return "飞行";
+	}
+	//创建一只鸟对象
+	var b1=new Bird();
+	document.write(b1.toString()+" "+b1.sleep()+" "+b1.fly()+"<br /><hr />");
+	//错误方案
+	// new b1.constructor();//这样创建的对象不是Bird()而是Object
+	// document.write(b1.constructor+"<br />");//判断b1的源码
+	// var newbird=new b1.constructor();
+	// document.write( (newbird instanceof Bird)+"<br />");//查看b1是否是Birdde 一个儿子（实例）
+
+	// 解决方案 让 b1 能正确反映自己的构造方法  
+	Bird.prototype.constructor=Bird;   //在继承的时候，修改constructor的值非常重要，以便进行后面的对象类型判断，Bird原型构造器修改成Bird
+	document.write(b1.constructor+"<br />"); //function Bird(){} 说明b1继承了Bird()
+	var newbird2=new b1.constructor();
+	document.write( (newbird2 instanceof Bird)+"<br />");//true
+	document.write(newbird2.constructor+"<br />");
+</script>	
+</body>
+</html>

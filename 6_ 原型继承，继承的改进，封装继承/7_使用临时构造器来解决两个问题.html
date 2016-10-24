@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>7_使用临时构造器来解决两个问题</title>
+</head>
+<body>
+<script type="text/javascript">
+	function Shape(){}
+	Shape.prototype.name="形状";
+	Shape.prototype.toString=function(){
+		return this.name;
+	};
+
+	//子类
+	function TwoDShape(){};//声明操作要分号
+	//创建一个临时构造器,一般都是空的
+	var F=function(){};//f继承的是Shape
+	F.prototype=Shape.prototype;
+	TwoDShape.prototype=new F();
+	TwoDShape.prototype.constructor=TwoDShape;
+	TwoDShape.prototype.name="2D形状";//给自己赋值
+
+	//孙类
+	function Triangle(bottom,height){
+			this.bottom=bottom;
+			this.height=height;
+		}
+	var G=function(){
+
+	}
+	G.prototype=TwoDShape.prototype;
+	G.prototype=new G();//当new G时，是重新创建了G的原型，所以在下面改Triangle的prototype中的属性时，是改的G中的，而不是 TwoDShape中的
+	Triangle.prototype.constructor=Triangle;
+	Triangle.prototype.name='三角形';
+	Triangle.prototype.getArea=function(){
+		return this.bottom*this.height/2;
+	}
+
+	//测试
+	var three=new Triangle(3,4);
+	document.write(three.getArea()+"<br />");
+	document.write(three.name+"<br />");
+
+	var a=new Shape();
+	document.write(a.toString()+"<br />");
+</script>	
+</body>
+</html>

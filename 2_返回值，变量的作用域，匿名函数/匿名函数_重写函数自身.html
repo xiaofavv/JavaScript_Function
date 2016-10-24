@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>匿名函数_重写函数自身</title>
+</head>
+<body>
+<script>
+	// function a(){
+	// 	document.write("hello<br />");
+	// 	a=function (){
+	// 		document.write("bye bye<br />");
+	// 	}
+	// }
+
+	// a();//第一次执行
+	// a();//第二次执行
+	// a();//第三次执行
+	// //小结：第一次执行的时候，会输出hello，当第二次，第n次执行的时候则会输出byebye，这是因为猪队友或是你自己不小心将你本来定义的全局变量做了修改，导致污染
+	
+	// document.write("<hr />");//分界线
+
+	//然而这种污染却可以用来检测浏览器
+	
+	function showTable(){
+		var r=2;
+		if("ActiveXObject" in window){//用来判断是否为IE，true为IE
+			r=1;
+		}
+		if(r==1){
+			showTable=function(){//IE用table实现
+				var arr=arguments[0]; //接arr的数组
+				document.write("<table border='1' width='400px'>");
+				for(var i=0;i<arr.length;i++){
+					document.write("<tr>");
+					document.write("<td>"+arr[i].name+"</td><td>"+arr[i].age+"</td>");
+					document.write("</tr>");
+				}
+				document.write("</table>");
+			}
+			
+		}else if(r==2){//火狐用ul实现
+			showTable=function(){
+				var arr=arguments[0];
+				document.write("<ul>");
+				for(var i=0;i<arr.length;i++){ 
+					document.write("<li>");
+					document.write(arr[i].name+"&nbsp;&nbsp;"+arr[i].age);
+					document.write("</li>");
+				}
+				document.write("</ul>");
+			}
+		}
+	}
+	function showTree(){ 
+		var r=2;
+		if("ActiveXObject" in window ){ 
+			r=1;
+		}
+		if(r==1){
+			showTree=function(){
+				document.write("以IE的特性来显示tree<br />");
+				}
+		}else if(r==2){
+			showTree=function(){
+				document.write("以火狐的特性来显示tree<br />");
+				}			
+			}
+		}
+		
+	//在自调用的代码一次性运行一下这些函数，这样这些函数就识别出浏览器的类型，并将自身重写
+	(function(){
+		showTable();
+		showTree();
+	})();
+
+	var arr=[{name:"HLY",age:20},{name:"YWB",age:22}];
+	showTable(arr);//将数组传入函数中
+	showTree();
+</script>	
+</body>
+</html>

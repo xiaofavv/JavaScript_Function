@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>11_自定义一个圆</title>
+</head>
+<body>
+定义一个circle类，有一个半径的属性，和两个方法（周长，面积）
+<br />
+<script type="text/javascript">
+	function Circle(r){
+		this.r=r;
+	}
+	Circle.PI=3.14;
+	Circle.prototype={
+		perimeter:function(){
+			return 2*this.r*Circle.PI;
+		},
+		area:function(){
+			return this.r*this.r*Circle.PI;
+		}
+	}
+
+	//创建一个圆对象
+	var c=new Circle(4);
+	document.write("半径为:"+c.r+"   周长为:  "+c.perimeter()+"  面积为:  "+c.area());
+</script>	
+</body>
+</html>

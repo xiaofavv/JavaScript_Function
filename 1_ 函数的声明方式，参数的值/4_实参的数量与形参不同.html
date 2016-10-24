@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>4_实参的数量与形参不同</title>
+</head>
+<body>
+	<script type="text/javascript">
+	function add(x,y,z){
+		return x+y+z;
+		}
+
+	//实参比形参少
+	alert(add(2,1));//NaN
+	//实参比形参多
+	alert(add(1,2,4,3));//执行前面几个满足的数值
+	
+	
+	
+	
+	//不定参：在函数中有一个隐藏的变量  arguments=》数组，它里面有传过来的所有的实参的值
+	function add2(){
+		var sum=0;
+		for(var i=0;i<arguments.length;i++){
+			sum+=arguments[i];
+			}
+			return sum;
+		}
+		document.write(add2(1,2,3,4,5,6,7)+"<br />");
+</script>
+</body>
+</html>

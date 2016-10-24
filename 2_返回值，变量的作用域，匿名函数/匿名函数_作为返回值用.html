@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>匿名函数_作为返回值用</title>
+</head>
+<body>
+<script>
+	function a(){
+		document.write("hello<br />");
+		return function (name){
+			document.write("bye bye"+name+"<br />");
+		};
+	}
+	//var r=a();调用  document.write("hello<br />");return function (){document.write("bye bye"+"<br />");}; 也就是a函数的整个函数
+	//r();//调用 document.write("bye bye"+"<br />");然后则输出bye bye
+	//↓两者结合
+	//a()();
+	a()("张三"); //调用 document.write("bye bye"+name+"<br />"); 添加一个属性name，然后name为张三
+	//bye bye张三
+</script>	
+</body>
+</html>

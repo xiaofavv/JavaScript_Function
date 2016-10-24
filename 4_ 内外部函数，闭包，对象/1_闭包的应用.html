@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>5_闭包的应用</title>
+</head>
+<body>
+<script type="text/javascript" >
+	var arr=["apple","pear","banana"];
+	var innerArray=new Array();
+	
+//	for(var i=0;i<arr.length;i++){
+//		var item=arr[i];
+//		innerArray[i]=function(){
+//			document.write(item+"<br />");
+//		}
+//	}
+	
+	//解决方案一，外部函数或函数工厂
+//	function write(item){
+//		return function(){//闭包
+//			document.write(item+"<br />")
+//		}
+//	}
+//	for(var i=0;i<arr.length;i++){
+//		var item=arr[i];
+//		innerArray[i]=write(item);
+//	}
+	
+	//解决方案二
+	
+	function write(item){
+		return function(){//闭包
+			document.write(item+"<br />")
+		}
+	}
+	for(var i=0;i<arr.length;i++){
+		var item=arr[i];
+		innerArray[i]=function (item){
+		return function(){//闭包
+			document.write(item+"<br />")
+		}
+	}(item);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	for(var i=0;i<innerArray.length;i++){
+		innerArray[i]();
+	}
+
+</script>	
+</body>
+</html>

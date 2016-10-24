@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>函数中的变量的作用域</title>
+</head>
+<body>
+	<script type="text/javascript">
+		//全局变量
+		var val="apple";
+		function funA(){
+			val="pear";     //在这里，val就是全局变量
+			document.write("inner val:"+val+"<br />");//pear
+		}
+		funA();
+		document.write("outer val:"+val+"<br />");//pear
+		//上面 funA中操作的变量就是全局变量
+		
+		
+		function funB(){
+			var val="banana";     //在这里，var声明了一个局部变量，虽然名字与全局变量相同，但优先于全局变量
+			document.write("inner2 val:"+val+"<br />");//banana
+		}
+		funB();
+		document.write("iouter2 val:"+val+"<br />");//pear
+
+		function funC(){
+			var cc="Hly";//局部
+		}
+		document.write("在外访问函数func中的cc"+cc+"<br />");//失败  not undefined
+
+		//小结：1.在函数中如果加了var则是局部变量，不加则是全局变量，则会污染到本来的全局变量
+		//		2.所以，写函数时，最好都加上var
+		//		3.在函数声明的局部变量，在函数的外面无法访问
+	</script>
+</body>
+</html>

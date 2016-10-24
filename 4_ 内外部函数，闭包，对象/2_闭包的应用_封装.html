@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>闭包的应用_封装</title>
+</head>
+<body>
+<script>
+	var setAge ,getAge;//声明两个全局变量
+	(function(){
+		var age=0;
+		setAge=function(a){
+			age=a;
+		};
+		getAge=function(){
+			return age;
+		};
+	})();
+	document.write(getAge());//0
+	setAge(20);
+	document.write(getAge());//20
+
+</script>	
+</body>
+</html>

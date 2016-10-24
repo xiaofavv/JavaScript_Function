@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>匿名函数_自调用</title>
+</head>
+<body>
+<script>
+	//函数名();
+	//代码();
+	//(代码)();
+
+	(function(){
+		document.write("hello<br />"); //hello
+	})();
+	//	函数代码用括号括起来，优先运算
+
+
+	//匿名自调用函数传参问题
+	//add(1,2);
+	//(代码)(1,2);
+	(function(){
+		document.write("hello"+arguments[0]+"<br />");//helloHly
+	})('Hly');
+	
+</script>	
+</body>
+</html>
